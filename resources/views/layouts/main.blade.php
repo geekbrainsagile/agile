@@ -35,7 +35,11 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav mr-auto">
-                    @include ('menu')
+                    @guest
+                        {{ __('Laravel') }}
+                    @else
+                        @include ('menu')
+                    @endguest
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -43,17 +47,17 @@
                     <!-- Authentication Links -->
                     @guest
                         <li class="nav-item {{ request()->routeIs('vklogin') ? 'active' : '' }}">
-                            <a class="nav-link" href="#"><i class="fa fa-vk fa-lg" aria-hidden="true"></i></a>
+                           <a class="nav-link" href="#"><i class="fa fa-vk fa-lg" aria-hidden="true"></i></a>
                         </li>
                         <li class="nav-item {{ request()->routeIs('gitLogin') ? 'active' : '' }}">
-                            <a class="nav-link" href="#"><i class="fa fa-github fa-lg" aria-hidden="true"></i></a>
+                           <a class="nav-link" href="#"><i class="fa fa-github fa-lg" aria-hidden="true"></i></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">{{ __('Войти') }}</a>
+                            <a class="nav-link" href="{{ route('login') }}">{{ __('Войти') }}</a>
                         </li>
                         @if (Route::has('register'))
                             <li class="nav-item">
-                                <a class="nav-link" href="#">{{ __('Регистрация') }}</a>
+                                <a class="nav-link" href="{{ route('register') }}">{{ __('Регистрация') }}</a>
                             </li>
                         @endif
                     @else

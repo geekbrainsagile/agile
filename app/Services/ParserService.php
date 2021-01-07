@@ -1,34 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
 
-use App\Models\Resources;
-use Illuminate\Http\Request;
+namespace App\Services;
 
-class ParserController extends Controller
+
+class ParserService
 {
-
-    /**
-     * ParserController constructor.
-     */
-    public function __construct()
+    public function parseCatalog($link)
     {
-
-    }
-
-    public function index() {
-
-        $products = [];
-
-        foreach (Resources::all() as $resource) {
-                $this->parseLink($resource->link);
-        }
-
-    }
-
-    public function parseLink(string $link) : void {
-
-        $html = file_get_contents($link);
+        $html = file_get_contents('https://kristaller.pro/catalog/balm/filter/clear/apply/index.php?limit=100&PAGEN_1=10');
 
         $dom = \phpQuery::newDocument($html);
 
@@ -49,5 +29,9 @@ class ParserController extends Controller
         }
 
         \phpQuery::unloadDocuments();
+
+
+
     }
+
 }
