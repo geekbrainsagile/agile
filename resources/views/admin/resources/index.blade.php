@@ -7,19 +7,19 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">CRUD Источники</h3>
+                        <h3 class="card-title">Ссылки на каталоги</h3>
                     </div>
                     <div class="card-body">
                         @forelse($resources as $key => $value)
                             <h4>{{ $value->link }}</h4>
                             <a href="{{ route('admin.resources.edit', $value) }}" class="card-link btn btn-success">
-                                Edit
+                                {{ __('Изменить') }}
                             </a>
                             <a href="{{ route('admin.resources.destroy', $value) }}" class="card-link btn btn-danger">
-                                Delete
+                                {{ __('Удалить') }}
                             </a>
                         @empty
-                            Источники новостей не заданы
+                            Нет ни одной ссылки на каталог
                         @endforelse
                     </div>
                     <div class="card-footer">
@@ -29,3 +29,4 @@
             </div>
         </div>
     </div>
+@endsection

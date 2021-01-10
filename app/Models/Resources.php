@@ -20,7 +20,7 @@ class Resources extends Model
 
     public static function attrNames(){
         return [
-            'link' => 'Сыылка на каталог'
+            'link' => 'Ссылка на каталог товаров'
         ];
     }
 }
