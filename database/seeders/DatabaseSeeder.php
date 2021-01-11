@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Resources;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -26,5 +27,7 @@ class DatabaseSeeder extends Seeder
                 'remember_token' => Str::random(10),
                 'role' => 1
             ]);
+
+        $this->call(ResourcesSeeder::class);
     }
 }
