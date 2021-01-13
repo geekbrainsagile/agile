@@ -14,15 +14,12 @@ class ResourcesSeeder extends Seeder
      */
     public function run()
     {
-        $links = [
-            'https://kristaller.pro/catalog/balm/filter/clear/apply/index.php?limit=100&PAGEN_1=10',
+        $resources = [
+            [
+                'link' => "https://kristaller.pro/catalog/balm/filter/clear/apply/index.php?limit=100&PAGEN_1=10",
+                'store' => 'Кристаллер'
+             ]
         ];
-
-        foreach ($links as $link) {
-            $resources[] = [
-                'link' => $link
-            ];
-        }
 
         DB::table('resources')->insert($resources);
     }

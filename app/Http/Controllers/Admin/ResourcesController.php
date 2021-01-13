@@ -24,7 +24,7 @@ class ResourcesController extends Controller
         ]);
     }
 
-    public function update(Request $request, Resource $resource) {
+    public function update(Request $request, Resources $resource) {
         if($this->validatedAndSave($request, $resource)) {
             return redirect()->route('admin.resources.index')->with('success', 'Источник изменен успешно!');
         } else {
@@ -43,13 +43,13 @@ class ResourcesController extends Controller
         }
     }
 
-    public function edit(Resource $resource) {
+    public function edit(Resources $resource) {
         return view('admin.resources.create', [
             'resource' => $resource
         ]);
     }
 
-    public function destroy(Resource $resource) {
+    public function destroy(Resources $resource) {
         if ($resource->delete()) {
             return redirect()->route('admin.resources.index')->with('success', 'Источник удален.');
         } else {
