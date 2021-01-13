@@ -37,6 +37,34 @@ Route::group(
 });
 
 
+Route::group(
+    [
+        'prefix' => 'profile',
+        'as' => 'profile.',
+        'middleware' => ['auth'],
+        'namespace' => 'App\Http\Controllers'
+    ],
+    function() {
+        Route::get( '/{user}', 'ProfileController@index')->name('index');
+        Route::post( '/edit', 'ProfileController@edit')->name('edit');
+        Route::post( '/editPassword', 'ProfileController@editPassword')->name('editPassword');
+        Route::post( '/addAvatar', 'ProfileController@addAvatar')->name('addAvatar');
+    }
+);
+
+//Route::group([
+//    'prefix' => 'profile',
+//    'namespace' => 'App\\Http\\Controllers\\',
+//    'as' => 'profile.',
+//    'middleware' => [ 'auth' ]
+//], function () {
+//    Route::get( '/{user}', 'ProfileController@index')->name('index');
+//    Route::post( '/edit', 'ProfileController@edit')->name('edit');
+//    Route::post( '/editPassword', 'ProfileController@editPassword')->name('editPassword');
+//    Route::post( '/addAvatar', 'ProfileController@addAvatar')->name('addAvatar');
+//});
+
+
 //Соцсети авторизация
 //Route::get('/auth/vk', 'LoginController@login')->name('vklogin');
 //Route::get('/auth/vk/response', 'LoginController@response')->name('vkResponse');
