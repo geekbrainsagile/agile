@@ -16,6 +16,10 @@ class Categories extends Model
         return $this->hasMany(Products::class, 'category_id');
     }
 
+    public function resources() {
+        return $this->hasMany(Resources::class, 'category_id');
+    }
+
     public static function rules() {
         return [
             'slug' => 'required|min:3|max:15|alpha_dash',

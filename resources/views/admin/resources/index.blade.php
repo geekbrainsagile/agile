@@ -11,8 +11,9 @@
                     </div>
                     <div class="card-body">
                         @forelse($resources as $key => $value)
-                            <p>{{ $value->link }}</p>
+                            <p><b>Ссылка</b>&nbsp;{{ $value->link }}</p>
                             <p><b>Магазин</b>&nbsp;{{ $value->store }}</p>
+                            <p><b>Категория товара</b>&nbsp;{{ $value->category->text }}</p>
                             <a href="{{ route('admin.resources.edit', $value) }}" class="card-link btn btn-success">
                                 {{ __('Изменить') }}
                             </a>

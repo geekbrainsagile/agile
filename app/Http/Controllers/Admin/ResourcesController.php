@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 
+use App\Models\Categories;
 use App\Models\Resources;
 use Illuminate\Http\Request;
 
@@ -20,7 +21,8 @@ class ResourcesController extends Controller
         $resource = new Resources();
 
         return view('admin.resources.create', [
-            'resource' => $resource
+            'resource' => $resource,
+            'categories' => Categories::all()
         ]);
     }
 
@@ -45,7 +47,9 @@ class ResourcesController extends Controller
 
     public function edit(Resources $resource) {
         return view('admin.resources.create', [
-            'resource' => $resource
+            'resource' => $resource,
+            'categories' => Categories::all(),
+            'category_id' => $resource->category->id
         ]);
     }
 

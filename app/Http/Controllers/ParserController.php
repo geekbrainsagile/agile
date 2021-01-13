@@ -34,6 +34,7 @@ class ParserController extends Controller
                             'brand' => $product['brand'],
                             'country' => $product['country'],
                             'price' => floatval( $product['price'] ),
+                            'category_id' => $resource->category_id
                         ]);
 
                     }

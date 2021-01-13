@@ -38,6 +38,31 @@
                                        value="{{ old('store') ?? $resource->store ?? '' }}">
                                 <small id="storeHelp" class="form-text text-muted">Введите магазин</small>
                             </div>
+                            <div class="form-group">
+                                <label class="my-1 mr-2" for="resourcesCategory">Категория</label>
+                                @if ($errors->has('category_id'))
+                                    <div class="alert alert-danger">
+                                        @foreach($errors->get('category_id') as $error)
+                                            {{ $error }}
+                                        @endforeach
+                                    </div>
+                                @endif
+                                <select name="category_id" id="resourcesCategory" class="custom-select my-1 mr-sm-2">
+                                    @forelse($categories as $key => $value)
+                                        @if (old('category_id'))
+                                            <option @if ($value->id == old('category_id')) selected
+                                                    @endif value="{{ $value->id }}">{{ $value->text }}
+                                        @else
+                                            <option @if (!empty($category_id) && $value->id == $category_id) selected
+                                                    @endif
+                                                    value="{{ $value->id }}">{{ $value->text }}</option>
+                                        @endif
+                                    @empty
+                                        <option value="0" selected>Нет категории</option>
+                                    @endforelse
+                                </select>
+                            </div>
+
                             <button type="submit" class="btn btn-primary">
                                 @if ($resource->id){{ __('Изменить') }}@else{{ __('Добавить') }}@endif
                             </button>
