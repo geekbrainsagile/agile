@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Categories;
+use App\Models\Resources;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -14,15 +16,15 @@ class ResourcesSeeder extends Seeder
      */
     public function run()
     {
-        $links = [
-            'https://kristaller.pro/catalog/balm/filter/clear/apply/index.php?limit=100&PAGEN_1=10',
-        ];
+        $category = Categories::firstWhere('slug', 'balm');
 
-        foreach ($links as $link) {
-            $resources[] = [
-                'link' => $link
-            ];
-        }
+        $resources = [
+            [
+                'link' => "https://kristaller.pro/catalog/balm/filter/clear/apply/index.php?limit=100&PAGEN_1=10",
+                'store' => 'Кристаллер',
+                'category_id' => $category->id
+             ]
+        ];
 
         DB::table('resources')->insert($resources);
     }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 
+use App\Models\Categories;
 use App\Models\Resources;
 use Illuminate\Http\Request;
 
@@ -20,11 +21,12 @@ class ResourcesController extends Controller
         $resource = new Resources();
 
         return view('admin.resources.create', [
-            'resource' => $resource
+            'resource' => $resource,
+            'categories' => Categories::all()
         ]);
     }
 
-    public function update(Request $request, Resource $resource) {
+    public function update(Request $request, Resources $resource) {
         if($this->validatedAndSave($request, $resource)) {
             return redirect()->route('admin.resources.index')->with('success', 'Источник изменен успешно!');
         } else {
@@ -43,13 +45,15 @@ class ResourcesController extends Controller
         }
     }
 
-    public function edit(Resource $resource) {
+    public function edit(Resources $resource) {
         return view('admin.resources.create', [
-            'resource' => $resource
+            'resource' => $resource,
+            'categories' => Categories::all(),
+            'category_id' => $resource->category->id
         ]);
     }
 
-    public function destroy(Resource $resource) {
+    public function destroy(Resources $resource) {
         if ($resource->delete()) {
             return redirect()->route('admin.resources.index')->with('success', 'Источник удален.');
         } else {

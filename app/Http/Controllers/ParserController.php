@@ -22,7 +22,8 @@ class ParserController extends Controller
         $products = [];
 
         foreach (Resources::all() as $resource) {
-                $products = $this->parseLink($resource->link);
+
+            $products = $this->parseLink($resource->link);
 
                 if (!empty($products)) {
                     foreach ($products as $product) {
@@ -33,6 +34,7 @@ class ParserController extends Controller
                             'brand' => $product['brand'],
                             'country' => $product['country'],
                             'price' => floatval( $product['price'] ),
+                            'category_id' => $resource->category_id
                         ]);
 
                     }
