@@ -11,16 +11,22 @@ class Products extends Model
 
 
     public $timestamps = true;
-    protected $fillable = ['code', 'article', 'description', 'brand', 'country', 'price'];
+    protected $fillable = ['code', 'article', 'description', 'brand', 'country', 'price', 'category_id'];
+
+    public function category() {
+        return $this->belongsTo(Categories::class, 'category_id');
+    }
 
     public static function rules() {
+
         return [
             'code' => 'required|string|min:5|max:50|unique:products,code',
             'article' => 'required|string|min:5|max:50',
             'description' => 'required|string|min:5|max:1024',
             'brand' => 'nullable|string|min:5|max:1024',
             'country' => 'nullable|string|min:5|max:100',
-            'price' => 'required|numeric'
+            'price' => 'required|numeric',
+            'category_id' => "required|exists:categories,id"
         ];
     }
 
@@ -31,7 +37,8 @@ class Products extends Model
             'description' => 'Наименование',
             'brand' => 'Бренд',
             'country' => 'Страна производства',
-            'price' => 'Цена'
+            'price' => 'Цена',
+            'category_id' => 'Категория товара'
         ];
     }
 

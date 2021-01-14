@@ -28,6 +28,8 @@ class DatabaseSeeder extends Seeder
                 'role' => 1
             ]);
 
+        $this->call(CategoriesSeeder::class);
         $this->call(ResourcesSeeder::class);
+
     }
 }
